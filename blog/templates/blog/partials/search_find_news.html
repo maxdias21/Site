@@ -1,0 +1,20 @@
+<!-- Procurar notícias -->
+<div class="col-12 mt-5">
+    <h3>({{ qnt_news }}) notícia(s) encontrada(s)</h3>
+    {% for news in news %}
+    <div class="row" id="all-news">
+        <div class="col-6 col-md-4">
+            <img src="{{ news.image.url }}">
+        </div>
+        <div class="col-6 col-md-8" id="search-find-news">
+            <p class="created-at">{{ news.created_at }}</p>
+            <a class="text-break" href="{% url 'news:post_detail' news.slug %}">{{ news.title }}</a>
+            <p class="description text-break">{{ news.description }}</p>
+        </div>
+    </div>
+    <hr>
+    {% empty %}
+    <h3 class="col-6">Nenhuma notícia encontrada</h3>
+    {% endfor %}
+</div>
+<!-- Fim procurar notícias -->

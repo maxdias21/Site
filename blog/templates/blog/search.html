@@ -1,0 +1,18 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}Buscando por "{{ search_term }}"{% endblock 'title' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <div class="row">
+
+        {% include 'blog/partials/search_find_users.html' %}
+        <hr>
+        {% include 'blog/partials/search_find_news.html' %}
+        {% include 'blog/partials/search_find_blog_posts.html' %}
+        {% include 'blog/partials/search_find_tags.html' %}
+    </div>
+</div>
+
+{% endblock 'content' %}

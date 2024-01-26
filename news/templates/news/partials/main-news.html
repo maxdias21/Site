@@ -1,0 +1,51 @@
+<section class="container" id="main-news">
+    <div class="row">
+        <div class="col-12 mt-3">
+            {% include 'global/partials/messages.html' %}
+            {% if news %}
+            <div class="row">
+                {% if main_news %}
+                    <!-- Notícia principal -->
+                    <div class="col-12 col-md-6" style="height: 600px">
+                        <a href="{% url 'news:post_detail' main_news.slug %}"><img src="{{ main_news.image.url }}"
+                                                                                         style="width:100%; height:100%"></a>
+                        <a href="{% url 'news:post_detail' main_news.slug %}" class="text-break text-into-img">{{ main_news.description | safe}}</a>
+                    </div>
+                {% endif %}
+                    <!-- Fim notícia principal -->
+
+                {% if secondary_news %}
+                    <div class="col-12 col-md-6">
+                        <!-- Notícia secundária parte de cima -->
+                        <div class="row">
+                            <div class="col-12" style="height: 330px;">
+                                <a href="{% url 'news:post_detail' secondary_news.slug %}"><img src="{{ secondary_news.image.url }}" style="width:100%; height:100%"></a>
+                                <a href="{% url 'news:post_detail' secondary_news.slug %}" class="text-break text-into-img-bottom">{{ secondary_news.description |safe }}</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <!-- Fim notícia secundária parte de cima -->
+
+                    <!-- Divisor entre as duas notícias secundárias -->
+                    <div class="divisor"></div>
+
+                    <!-- Notícia secundária parte de baixo -->
+                    {% if thirdly_news %}
+                    <div class="row">
+                        <div class="col-12" style="height: 250px;">
+                            <a href=""><img src="{{ thirdly_news.image.url }}" style="width:100%; height:100%"></a>
+                            <a href="{% url 'news:post_detail' secondary_news.slug %}" class="text-break text-into-img-bottom-2">{{ thirdly_news.description | safe }}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Fim notícia secundária parte de baixo -->
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h1>Não há conteúdo no momento :(</h1>
+
+        {% endif %}
+
+    </div>
+</section>

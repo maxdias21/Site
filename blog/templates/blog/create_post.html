@@ -1,0 +1,30 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}Criar post{% endblock 'title' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-lg-10 col-xl-6 form-container">
+                    <h2 class="text-break" style="word-break: break-all;">Crie seu post e contribua para a
+                        comunidade</h2>
+                    <p class="attention text-break" style="word-break: break-all;">Atenção: Avaliamos todos os posts
+                        antes de serem publicados para a comunidade 😉</p>
+
+                    {% include 'global/partials/messages.html' %}
+
+                    <form class="form" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+                        {% include 'global/partials/form.html' %}
+
+                        <button class="btn btn-success" type="submit">Publicar post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock 'content' %}

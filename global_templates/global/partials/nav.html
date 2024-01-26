@@ -1,0 +1,76 @@
+{% load static %}
+{% load i18n %}
+
+<!-- Início Navbar-->
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body mb-5" data-bs-theme="dark">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand mr-5" href="{% url 'news:index' %}">Início</a>
+        <!-- Fim logo -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'news:all_news' %}">Notícias</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: white; border: none;" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Comunidade
+                    </a>
+                    <ul class="dropdown-menu" style="border: none;">
+                        <li><a class="dropdown-item" href="{% url 'blog:all_users' %}">Usuários</a></li>
+                        <li><a class="dropdown-item" href="{% url 'blog:all_posts' %}">Posts</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Útils</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: white; border: none;" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ request.user.first_name }} {{ request.user.last_name }}
+                    </a>
+                    <ul class="dropdown-menu" style="border: none;">
+                        <li><a class="dropdown-item" href="{% url 'login:profile' %}">Perfil</a></li>
+                        <form action="{% url 'login:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value="{{ request.user.username }}">
+                            <input class="btn" value="Sair" type="submit">
+                        </form>
+                    </ul>
+                </li>
+                <span class="d-block d-none d-md-block d-lg-block d-xl-block">
+                        {% if request.user.profile.photo %}
+                            <img src="{{ request.user.profile.photo.url }}" class="profile-photo-top" style="margin-left:10px;margin-right:15px;">
+                        {% endif %}
+                    </span>
+                {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: white; border: none;" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Entrar
+                    </a>
+                    <ul class="dropdown-menu" style="border: none;">
+                        <li><a class="dropdown-item" href="{% url 'login:login' %}">Entrar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'login:register' %}">Registrar</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+                <form class="d-flex" action="{% url 'blog:search' %}" role="search">
+                    <input class="form-control me-2" name="q" type="search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                </form>
+            </ul>
+            <!-- Espaçamento entre o botão pesquisar e o menu -->
+            <div style="margin-right:40px"></div>
+        </div>
+    </div>
+</nav>
+<!-- Fim Navbar -->

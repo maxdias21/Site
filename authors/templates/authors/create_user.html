@@ -1,0 +1,27 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}Cadastre-se{% endblock 'title' %}
+
+{% block 'content' %}
+<div class="container" id="register">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-lg-10 col-xl-6 form-container">
+                    <h1>Crie uma conta, é grátis</h1>
+
+                    {% include 'global/partials/messages.html' %}
+
+                    <form class="form" action="{{ form_action }}" method="POST">
+                        {% include 'global/partials/form.html' %}
+
+                        <button class="btn btn-success btn-register" type="submit">Cadastrar</button>
+                        <a href="{% url 'login:login' %}" class="btn btn-danger btn-login">Já possui uma conta? Faça login!</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock 'content' %}

@@ -1,0 +1,16 @@
+{% load humanize %}
+
+<div class="col-12" id="community">
+
+            <h2>Comunidade</h2>
+    {% for post in posts %}
+            <div>
+                <p class="user">{{ post.author.first_name }} {{ post.author.last_name }}</p>
+                <a href="" class="text-break post-content">{{ post.description|slice:":100" }}</a>
+                <p class="date">{{ post.created_at | naturalday}}</p>
+                <hr>
+            </div>
+    {% empty %}
+        <h5>A comunidade anda um pouco quieta, tente voltar um pouco mais tarde</h5>
+    {% endfor %}
+</div>

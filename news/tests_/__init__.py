@@ -1,0 +1,1 @@
+from .test_news_create import *

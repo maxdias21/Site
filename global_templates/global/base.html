@@ -1,0 +1,14 @@
+{% include 'global/partials/head.html' %}
+
+<title>{% block 'title' %}{% endblock 'title' %}</title>
+
+</head>
+<body>
+    {% include 'global/partials/nav.html' %}
+
+    {% block 'content' %} {% endblock 'content' %}
+
+    {% include 'global/partials/footer.html' %}
+</body>
+
+</html>

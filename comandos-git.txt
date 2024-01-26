@@ -1,0 +1,31 @@
+// Começar com git
+// git config --global user.name = "Max Dias Vieira Peixoto"
+// git config --global user.email = "maxdias.vp@gmail.com"
+// git config --global init.defaultBranch master
+
+// Iniciar projeto
+// git init
+
+// Pegar ssh
+// ssh-keygen
+
+// Adicionar projeto
+// git remote add origin + chave ssh
+// git remote add origin git@github.com:maxdias21/Site.git
+
+// Se eu quiser ver o que eu posso fazer no projeto
+// git remote -v
+// Se aparecer fetch - eu posso baixar dados do repositório
+// Se aparecer push - eu posso enviar dados para o repositório
+
+// Fazer um commit
+// git commit -m "qualquer coisa"
+
+// Enviar para repositório
+// git push
+// git push --set-upstream origin main
+
+// Para adicionar arquivos ao repositório
+// git add "qualquer-coisa"
+
+// git status

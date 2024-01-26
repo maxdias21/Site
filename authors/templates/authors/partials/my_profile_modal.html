@@ -1,0 +1,37 @@
+<!-- Início modal -->
+<button class="btn-profile mt-4" data-bs-toggle="modal" data-bs-target="#modal_edit_profile">
+    Editar perfil
+</button>
+<a href="{% url 'blog:create_post' %}" class="create-post">
+    Criar post
+</a>
+<div class="modal fade form" id="modal_edit_profile" tabindex="-1" aria-labelledby="Editar perfil"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="Editar perfil">Editar meu perfil</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body form-container">
+                <!-- Formulário editar perfil -->
+
+                <form enctype="multipart/form-data" action="{{ form_action }}" method="POST">
+                    {% include 'global/partials/form.html' %}
+
+                    <button class="btn btn-success mt-4" style="display: block;" type="submit">
+                        Editar perfil
+                    </button>
+                    <!-- Fim formulário editar perfil -->
+                </form>
+                <!-- Fim formulário editar perfil -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fim modal -->

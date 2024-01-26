@@ -1,0 +1,37 @@
+<!-- Início encontrar usuários -->
+<div class="col-12">
+    <h3>({{qnt_users}}) Usuário(s) encontrado(s)</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for user in users %}
+        <div class="col">
+            <div class="card h-100">
+                {% if user.photo %}
+                <img src="{{ user.photo.url }}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.author.first_name }} {{ user.author.last_name }}</h5>
+                    <p class="card-text">{{ user.description|slice:":155" }}</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text"><strong><u>Perfil {{ user.profile_status }}</u></strong></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Último acesso: {{ user.author.last_login }}</small>
+                </div>
+                <div class="">
+                    {% if user.profile_status == 'Privado' %}
+                    <a href="{% url 'login:author_profile_view' user.slug %}"
+                       class="btn btn-danger mt-2 mb-2 mr-2 disabled" style="margin-left: 10px;">Ver perfil</a>
+                    {% else %}
+                    <a href="{% url 'login:author_profile_view' user.slug %}"
+                       class="btn btn-success mt-2 mb-2 mr-2" style="margin-left: 10px;">Ver perfil</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <h3>Nenhum usuário encontrado</h3>
+    </div>
+    {% endfor %}
+</div>
+<!-- Início encontrar usuários -->

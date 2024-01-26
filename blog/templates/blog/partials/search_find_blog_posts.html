@@ -1,0 +1,20 @@
+<!-- Início encontrar posts da comunidade -->
+<div class="col-12 mt-5">
+    <h3>({{ qnt_posts_blog }}) post(s) da comunidade encontrado(s)</h3>
+    {% for post in posts %}
+    <div class="row mt-2" id="all-news">
+        <div class="col-6 col-md-4">
+            <img src="{{ post.image.url }}">
+        </div>
+        <div class="col-6 col-md-8" id="search-find-news">
+            <p class="created-at">{{ post.created_at }}</p>
+            <a class="display-6 text-break" href="{% url 'blog:post_detail' post.slug %}"
+               style="text-decoration: none; color: black;">{{ post.title }}</a>
+            <p class="description text-break">{{ post.description }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <h3 class="col-6">Nenhum post encontrado</h3>
+    {% endfor %}
+</div>
+<!-- Fim encontrar posts da comunidade  --

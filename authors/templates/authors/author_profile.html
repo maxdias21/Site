@@ -1,0 +1,80 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}{{ author.author.first_name }} {{ author.author.last_name }}{% endblock 'title' %}
+
+{% load static %}
+
+{% block 'content' %}
+<div class="container" id="profile">
+    <div class="row">
+        <div class="col">
+            {% include 'global/partials/messages.html' %}
+            <div class="row">
+                <!-- Início foto do perfil -->
+                <div class="col-6 col-md-5 image-container">
+                    {% if profile.photo %}
+                    <img class="profile-photo"
+                         src="{{ profile.photo.url }}">
+                    {% else %}
+                    <img class="profile-photo"
+                         src="https://banffventureforum.com/wp-content/uploads/2019/08/no-photo-icon-22.png">
+                    <div class="user-full-name-image d-block d-sm-block d-md-none">{{ author.author.first_name }} {{ author.author.last_name }}</div>
+                    {% endif %}
+                </div>
+                <!-- Fim foto do perfil -->
+
+                <!-- Menu topo direita -->
+                <div class="col-6 ">
+                    <span><a href="" class="username">{{ author.author }}</a></span>
+
+                    {% include 'authors/partials/authors_profile_modal.html' %}
+
+                    <!-- status perfil -->
+                    <div class="mt-4 mb-3 d-none d-md-block d-lg-block d-xl-block">
+                        {% if not qnt_posts %}
+                            <span class="posts"><span style="font-weight: 500;">0</span> posts</span>
+                        {% elif qnt_posts > 1 %}
+                        <span class="posts"><span style="font-weight: 500;">{{ qnt_posts }}</span> posts</span>
+                        {% else %}
+                        <span class="posts"><span style="font-weight: 500;">{{ qnt_posts }}</span> post</span>
+                        {% endif %}
+
+                        <span class="profile-status"
+                        >perfil:</span>
+                        <span style="font-weight: 500; margin-left: 5px; text-decoration: underline;">{{ author.profile_status|capfirst }}</span>
+                    </div>
+                    <div class="user-full-name d-none d-md-block d-lg-block d-xl-block">{{ author.author.first_name }}
+                        {{ author.author.last_name }}
+                    </div>
+                    <!-- Fim status perfil -->
+                </div>
+                <!-- Fim menu topo direita -->
+            </div>
+        </div>
+    </div>
+    <hr class="mt-5">
+    <div class="row">
+        <!-- Início cards -->
+        {% for post in posts %}
+        <div class="col-sm-12 col-md-4">
+            <div class="card mt-3" style="width: 18rem; margin: 0 auto; height: 350px;">
+                {% if post.image %}
+                <img src="{{ post.image.url }}"
+                     class="card-img-top" alt="..." style="width: 100%; height: 150px;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title|slice:":45" }}</h5>
+                    <p class="card-text">{{ post.description|slice:":60"}}</p>
+                    <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-primary"
+                       style="position: absolute; bottom: 3%;">Ler post completo...</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h1 class="text-center">{{ author.author.first_name }} {{ author.author.last_name }} não publicou nada ainda</h1>
+        {% endfor %}
+        <!-- Fim cards -->
+    </div>
+</div>
+
+{% endblock 'content' %}

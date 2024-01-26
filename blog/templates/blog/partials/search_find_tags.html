@@ -1,0 +1,21 @@
+<!-- Início encontrar posts da comunidade -->
+<hr>
+<div class="col-12 mt-5">
+    <h3>Notícias com a tag "{{search_term}}" encontradas ({{ qtn_tags }})</h3>
+    {% for news in news_tags %}
+    <div class="row mt-2" id="all-news">
+        <div class="col-6 col-md-4">
+            <img src="{{ news.image.url }}">
+        </div>
+        <div class="col-6 col-md-8" id="search-find-news">
+            <p class="created-at">{{ news.created_at }}</p>
+            <a class="display-6 text-break" href="{% url 'news:post_detail' news.slug %}"
+               style="text-decoration: none; color: black;">{{news.title }}</a>
+            <p class="description text-break">{{ news.description }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <h3 class="col-6">Nenhuma notícia com a tag "" encontrado</h3>
+    {% endfor %}
+</div>
+<!-- Fim encontrar posts da comunidade  --

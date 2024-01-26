@@ -1,0 +1,35 @@
+{% extends 'global/base.html' %}
+
+{% block 'title' %}Todos os posts{% endblock 'title' %}
+
+{% block 'content' %}
+
+{% for post in page_obj %}
+<div class="container" id="all-news">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6 col-md-4 container-size">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}">
+                    {% endif %}
+                </div>
+                <div class="col-6 col-md-8">
+                    <p class="created-at">{{ post.created_at }}</p>
+                    <a class="text-break title" href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a>
+                    <p class="description text-break">{{ post.description }}</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+{% empty %}
+    <h1 class="text-center">Não há nada aqui no momento, volte mais tarde!</h1>
+
+{% endfor %}
+
+{% include 'global/partials/pagination.html' %}
+
+
+{% endblock 'content' %}

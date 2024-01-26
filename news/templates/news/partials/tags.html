@@ -1,0 +1,8 @@
+<div class="col-12" id="tags">
+    <h2>Tags</h2>
+    {% for tag in tags %}
+        <a class='text-break' href="{% url 'news:tags' tag.slug %}">{{ tag.name }}</a>
+    {% empty %}
+        <h5>Nenhuma tag encontrada</h5>
+    {% endfor %}
+</div>

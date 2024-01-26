@@ -1,0 +1,9 @@
+<div class="col-12" id="new-users">
+    <h2>Novos usuários</h2>
+    {% for author in authors %}
+        <a class='blinking text-break' href="{% url 'login:author_profile_view' author.slug %}">
+            {{ author.author.first_name }} {{ author.author.last_name }}</a>
+    {% empty %}
+        <h5>Nenhum usuário cadastrado</h5>
+    {% endfor %}
+</div>
